@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diet & Calorie Logger</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>🥗 Diet &amp; Calorie Logger</h1>
+      <div class="date-row">
+        <button id="prev" aria-label="Previous day">‹</button>
+        <input type="date" id="date">
+        <button id="next" aria-label="Next day">›</button>
+      </div>
+    </header>
+
+    <section class="card summary">
+      <div class="ring-wrap">
+        <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
+          <circle cx="60" cy="60" r="52" class="ring-bg"></circle>
+          <circle cx="60" cy="60" r="52" class="ring-fg" id="ringFg"></circle>
+        </svg>
+        <div class="ring-text">
+          <strong id="total">0</strong>
+          <span>of <span id="goalText">2000</span> kcal</span>
+        </div>
+      </div>
+      <div class="summary-side">
+        <p id="remaining" class="remaining"></p>
+        <label class="goal-label">Daily goal (kcal)
+          <input type="number" id="goal" min="500" max="10000" step="50">
+        </label>
+        <div class="macros">
+          <div><span id="mP">0</span> g<small>Protein</small></div>
+          <div><span id="mC">0</span> g<small>Carbs</small></div>
+          <div><span id="mF">0</span> g<small>Fat</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Add food</h2>
+      <form id="form" autocomplete="off">
+        <input type="text" id="name" placeholder="Food (e.g. Paneer wrap)" required maxlength="60">
+        <select id="meal">
+          <option>Breakfast</option>
+          <option>Lunch</option>
+          <option>Dinner</option>
+          <option>Snack</option>
+        </select>
+        <input type="number" id="cal" placeholder="Calories" min="0" max="5000" required>
+        <input type="number" id="protein" placeholder="Protein g" min="0" max="500">
+        <input type="number" id="carbs" placeholder="Carbs g" min="0" max="1000">
+        <input type="number" id="fat" placeholder="Fat g" min="0" max="500">
+        <button type="submit" class="primary">Add</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Today's log</h2>
+      <div id="log"></div>
+    </section>
+
+    <section class="card">
+      <h2>Last 7 days</h2>
+      <div id="chart" class="chart"></div>
+    </section>
+
+    <p id="storage" class="storage-note"></p>
+
+    <footer>
+      <button id="export">Export CSV</button>
+      <button id="clear" class="danger">Clear this day</button>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
